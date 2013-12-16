@@ -2,20 +2,24 @@ declare -A list
 
 FILEPATH='/home/pi/Music/*'
 
+#make copy of Internal Field Separator, modify it to make newline the terminator.
+#later, revert this.
 SAVEIFS=$IFS
 IFS=$(echo -en "\n\b")
+
+#the ever so used loop-counter
 i=0
 
 for files in $FILEPATH
   do
     list[$i]="$files"       #load files into list
     let i+=1
-    echo $files           #display loaded files
+    echo $files           #display loaded files, not required
   done
   
-max=$i
+max=$i                    #total number of files (actually files+1)
 i=0
-IFS=$SAVEIFS
+IFS=$SAVEIFS              #reverted
 
 while true;
   do
