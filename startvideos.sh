@@ -28,6 +28,6 @@ if pgrep omxplayer > /dev/null
 then
 	echo 'running'
 else
-	/usr/bin/omxplayer -L -r -o hdmi "$var_1"
+	/home/pi/omxplayer-dist/usr/bin/omxplayer -r -o hdmi "$var_1"
 fi
 done
