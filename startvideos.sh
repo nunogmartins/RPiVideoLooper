@@ -14,15 +14,11 @@ if [[ $usb -eq 1 ]]; then
     FILES=/media/USB/videos/
 fi
 
-current=0
-for f in `ls $FILES | grep ".mp4$\|.avi$\|.mkv$\|.mp3$\|.mov$\|.mpg$\|.flv$\|.m4v$"`
+var_1=""
+for f in `ls $FILES | grep ".mp4"`
 do
-        vids[$current]="$f"
-        let current+=1
-	echo "$f"
+    var_1="$var_1 $FILES$f}"
 done
-max=$current
-current=0
 
 #Reset the IFS
 IFS=$SAVEIFS
@@ -32,12 +28,6 @@ if pgrep omxplayer > /dev/null
 then
 	echo 'running'
 else
-	let current+=1
-	if [ $current -ge $max ]
-	then
-		current=0
-	fi
-
-	/usr/bin/omxplayer -r -o hdmi "$FILES${vids[$current]}"
+	/usr/bin/omxplayer -L -r -o hdmi "$var_1"
 fi
 done
