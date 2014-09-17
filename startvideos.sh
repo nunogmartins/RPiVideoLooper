@@ -15,9 +15,9 @@ if [[ $usb -eq 1 ]]; then
 fi
 
 var_1=""
-for f in `ls $FILES | grep ".mp4"`
+for f in `ls $FILES | grep ".mp4$"`
 do
-    var_1="$var_1 $FILES$f}"
+    var_1="$var_1 $FILES$f"
 done
 
 #Reset the IFS
@@ -28,6 +28,6 @@ if pgrep omxplayer > /dev/null
 then
 	echo 'running'
 else
-	/home/pi/omxplayer-dist/usr/bin/omxplayer -r -o hdmi "$var_1"
+	/home/pi/omxplayer-dist/usr/bin/omxplayer --loop -r -o hdmi $var_1
 fi
 done
